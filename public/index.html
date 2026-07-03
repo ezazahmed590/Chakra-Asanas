@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chakras &amp; the Nervous System — a science-filtered map</title>
+<meta name="description" content="Press each chakra to open its real nerve-system anchor, the measurable effects of yoga, and trustworthy sources — traditional correspondence separated from verified biology.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#EDF1ED;
+    --surface:#F8FAF7;
+    --surface-alt:#F1F5F0;
+    --ink:#2C3A35;
+    --ink-soft:#586B63;
+    --accent:#6E9384;
+    --accent-deep:#456357;
+    --line:#DCE5DE;
+    --note-bg:#E4EDE6;
+
+    /* muted, desaturated chakra spectrum — calm, not loud */
+    --c-root:#C98A8A;
+    --c-sacral:#D6A876;
+    --c-solar:#D3C079;
+    --c-heart:#8FB79B;
+    --c-throat:#85A9C6;
+    --c-thirdeye:#9095C7;
+    --c-crown:#AB92C6;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Nunito Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px;margin:0 auto;padding:0 24px;}
+
+  /* ---------- hero ---------- */
+  header.hero{padding:84px 0 34px;}
+  .eyebrow{
+    text-transform:uppercase;letter-spacing:.26em;font-size:12px;font-weight:700;
+    color:var(--accent);margin:0 0 22px;
+  }
+  h1{
+    font-family:"Fraunces",Georgia,serif;font-weight:500;
+    font-size:clamp(2.1rem,5.4vw,3.4rem);line-height:1.08;letter-spacing:-.01em;
+    margin:0 0 20px;max-width:16ch;
+  }
+  .lede{font-size:1.1rem;color:var(--ink-soft);max-width:60ch;margin:0 0 30px;}
+  .note{
+    background:var(--note-bg);border-left:3px solid var(--accent);
+    border-radius:0 12px 12px 0;padding:18px 22px;max-width:68ch;
+    font-size:.96rem;color:var(--ink);
+  }
+  .note strong{color:var(--accent-deep);font-weight:700;}
+  .note .hook{font-weight:700;color:var(--accent-deep);font-family:"Fraunces",serif;font-style:italic;}
+
+  .hint{
+    display:flex;align-items:center;gap:10px;
+    margin:30px 0 14px;font-size:.82rem;letter-spacing:.02em;
+    color:#8A9A93;text-transform:uppercase;font-weight:700;
+  }
+  .hint::after{content:"";flex:1;height:1px;background:var(--line);}
+
+  /* ---------- accordion ---------- */
+  main{padding:4px 0 10px;}
+  .chakra-list{display:flex;flex-direction:column;gap:12px;}
+
+  .chakra-item{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-left:3px solid var(--dot,#ccc);
+    border-radius:14px;
+    overflow:hidden;
+    transition:box-shadow .3s ease;
+  }
+  .chakra-item.open{box-shadow:0 14px 34px -26px rgba(44,58,53,.55);}
+
+  .chakra-head{
+    width:100%;
+    display:flex;align-items:center;gap:15px;
+    background:none;border:none;cursor:pointer;
+    padding:19px 20px;text-align:left;
+    font-family:inherit;color:inherit;
+  }
+  .chakra-head:hover{background:var(--surface-alt);}
+  .chakra-head:focus-visible{outline:2px solid var(--accent);outline-offset:-3px;border-radius:12px;}
+
+  .dot{
+    flex:0 0 auto;width:20px;height:20px;border-radius:50%;
+    background:var(--dot,#ccc);
+    box-shadow:0 0 0 5px color-mix(in srgb,var(--dot,#ccc) 20%,transparent);
+    animation:breathe 8s ease-in-out infinite;
+  }
+  .head-text{flex:1;min-width:0;}
+  .chakra-name{
+    display:block;font-family:"Fraunces",serif;font-weight:600;
+    font-size:1.16rem;line-height:1.2;color:var(--ink);
+  }
+  .chakra-sub{
+    display:block;font-size:.8rem;font-weight:600;letter-spacing:.02em;
+    color:#8A9A93;margin-top:2px;
+  }
+  .chevron{
+    flex:0 0 auto;color:var(--accent);
+    transition:transform .34s ease;
+  }
+  .chakra-item.open .chevron{transform:rotate(180deg);}
+
+  /* expandable panel (grid-rows technique) */
+  .panel{
+    display:grid;grid-template-rows:0fr;
+    transition:grid-template-rows .38s ease;
+  }
+  .chakra-item.open .panel{grid-template-rows:1fr;}
+  .panel-inner{overflow:hidden;}
+
+  .panel-pad{
+    padding:2px 20px 22px 55px;
+    display:grid;grid-template-columns:1fr 1fr;gap:20px 30px;
+  }
+  .detail-label{
+    display:block;font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+    font-weight:700;color:var(--accent-deep);margin-bottom:5px;
+  }
+  .detail p{margin:0;font-size:.95rem;}
+  .nerve-name{font-weight:700;color:var(--ink);}
+  .hook{color:var(--accent-deep);font-weight:700;}
+  .caveat{color:#9A7A63;font-weight:700;}
+  .asana{font-family:"Fraunces",serif;font-style:italic;color:var(--ink);}
+  .asana .eng{font-family:"Nunito Sans",sans-serif;font-style:normal;color:var(--ink-soft);font-size:.85em;}
+
+  .links a{
+    display:block;color:var(--accent-deep);text-decoration:none;font-weight:600;
+    font-size:.88rem;line-height:1.4;padding:2px 0;width:fit-content;
+    border-bottom:1px solid transparent;
+  }
+  .links a:hover,.links a:focus-visible{border-bottom-color:var(--accent);}
+  .links a::after{content:" \2197";color:var(--accent);font-weight:400;}
+
+  /* ---------- footer ---------- */
+  footer{padding:48px 0 90px;}
+  .footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+  .foot-block h3{font-family:"Fraunces",serif;font-weight:600;font-size:1.12rem;margin:0 0 10px;color:var(--ink);}
+  .foot-block p{margin:0;color:var(--ink-soft);font-size:.94rem;}
+  .sig{
+    margin-top:42px;padding-top:22px;border-top:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+    color:#8A9A93;font-size:.82rem;
+  }
+  .sig .mini-dots{display:flex;gap:7px;}
+  .sig .mini-dots span{width:9px;height:9px;border-radius:50%;}
+
+  @keyframes breathe{
+    0%,100%{transform:scale(1);opacity:.9;}
+    50%{transform:scale(1.15);opacity:1;}
+  }
+
+  @media (max-width:720px){
+    header.hero{padding:56px 0 26px;}
+    .panel-pad{grid-template-columns:1fr;padding:2px 20px 22px 20px;gap:18px;}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    .dot{animation:none;}
+    .panel,.chevron,.chakra-item{transition:none;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">Traditional map · verified biology</p>
+    <h1>The seven chakras, read through the nervous system</h1>
+    <p class="lede">A calm reference that keeps the useful structure of the chakra map while separating what is <em>traditional correspondence</em> from what is <em>measurable biology</em>. Endocrine glands are deliberately left out — that mapping is the least defensible part and shifts between sources.</p>
+    <div class="note">
+      The chakra system is a spiritual map, not an anatomical one, and there is no scientific evidence that chakras exist as physical structures. What <strong>is</strong> real: the nerve plexuses below are genuine anatomy, and yoga measurably shifts the nervous system — practice can raise heart-rate variability and vagal tone and lower cortisol. Wherever a claim rests on actual evidence it is flagged as a <span class="hook">real hook</span>.
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="hint">Press a chakra to open it</p>
+    <div class="chakra-list">
+
+      <!-- ROOT -->
+      <div class="chakra-item open" style="--dot:var(--c-root)">
+        <button class="chakra-head" aria-expanded="true" aria-controls="p-root">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="head-text">
+            <span class="chakra-name">Root</span>
+            <span class="chakra-sub">Muladhara · base of spine</span>
+          </span>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="panel" id="p-root" role="region" aria-label="Root chakra details">
+          <div class="panel-inner"><div class="panel-pad">
+            <div class="detail"><span class="detail-label">Nerve anchor &amp; what it controls</span><p><span class="nerve-name">Inferior hypogastric (pelvic) plexus.</span> Autonomic control of the bladder, bowel, and reproductive organs.</p></div>
+            <div class="detail"><span class="detail-label">What the asanas influence</span><p>Sense of safety and grounding; calming the fight-or-flight state. <span class="hook">Real hook:</span> yoga lowers cortisol and quiets the HPA stress axis.</p></div>
+            <div class="detail"><span class="detail-label">Asanas</span><p><span class="asana">Tadasana <span class="eng">(Mountain)</span></span><br><span class="asana">Malasana <span class="eng">(Garland squat)</span></span></p></div>
+            <div class="detail links"><span class="detail-label">Sources</span>
+              <a href="https://med.libretexts.org/Bookshelves/Anatomy_and_Physiology/Anatomy_and_Physiology_(Boundless)/14:_Autonomic_Nervous_System/14.2:_Structure_of_the_Autonomic_Nervous_System/14.2D:_Autonomic_Plexuses" target="_blank" rel="noopener">Autonomic plexuses — LibreTexts</a>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3415184/" target="_blank" rel="noopener">Yoga, cortisol &amp; the HPA axis — PMC</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- SACRAL -->
+      <div class="chakra-item" style="--dot:var(--c-sacral)">
+        <button class="chakra-head" aria-expanded="false" aria-controls="p-sacral">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="head-text">
+            <span class="chakra-name">Sacral</span>
+            <span class="chakra-sub">Svadhisthana · lower abdomen</span>
+          </span>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="panel" id="p-sacral" role="region" aria-label="Sacral chakra details">
+          <div class="panel-inner"><div class="panel-pad">
+            <div class="detail"><span class="detail-label">Nerve anchor &amp; what it controls</span><p><span class="nerve-name">Sacral plexus.</span> Supplies movement and sensation to the pelvis, perineum, and legs (via the sciatic and pudendal nerves).</p></div>
+            <div class="detail"><span class="detail-label">What the asanas influence</span><p>Emotional flow, creativity, pleasure. <span class="hook">Real hook:</span> slow hip-opening with breath shifts the body toward parasympathetic "rest" tone.</p></div>
+            <div class="detail"><span class="detail-label">Asanas</span><p><span class="asana">Baddha Konasana <span class="eng">(Bound Angle)</span></span><br><span class="asana">Bhujangasana <span class="eng">(Cobra)</span></span></p></div>
+            <div class="detail links"><span class="detail-label">Sources</span>
+              <a href="https://med.libretexts.org/Bookshelves/Anatomy_and_Physiology/Anatomy_and_Physiology_(Boundless)/14:_Autonomic_Nervous_System/14.2:_Structure_of_the_Autonomic_Nervous_System/14.2D:_Autonomic_Plexuses" target="_blank" rel="noopener">Autonomic plexuses — LibreTexts</a>
+              <a href="https://www.discovermagazine.com/the-science-behind-your-chakras-43074" target="_blank" rel="noopener">The science behind chakras — Discover</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- SOLAR PLEXUS -->
+      <div class="chakra-item" style="--dot:var(--c-solar)">
+        <button class="chakra-head" aria-expanded="false" aria-controls="p-solar">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="head-text">
+            <span class="chakra-name">Solar Plexus</span>
+            <span class="chakra-sub">Manipura · upper abdomen</span>
+          </span>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="panel" id="p-solar" role="region" aria-label="Solar plexus chakra details">
+          <div class="panel-inner"><div class="panel-pad">
+            <div class="detail"><span class="detail-label">Nerve anchor &amp; what it controls</span><p><span class="nerve-name">Celiac (solar) plexus.</span> The body's largest autonomic hub; routes vagal and sympathetic signals that drive digestion and gut motility.</p></div>
+            <div class="detail"><span class="detail-label">What the asanas influence</span><p>Confidence, willpower — the literal "gut feeling." <span class="hook">Real hook:</span> this plexus genuinely links brain and gut, so tradition and anatomy actually meet here.</p></div>
+            <div class="detail"><span class="detail-label">Asanas</span><p><span class="asana">Navasana <span class="eng">(Boat)</span></span><br><span class="asana">Dhanurasana <span class="eng">(Bow)</span></span></p></div>
+            <div class="detail links"><span class="detail-label">Sources</span>
+              <a href="https://www.kenhub.com/en/library/anatomy/celiac-plexus" target="_blank" rel="noopener">Celiac / solar plexus — Kenhub</a>
+              <a href="https://www.ncbi.nlm.nih.gov/books/NBK531469/" target="_blank" rel="noopener">Celiac plexus — StatPearls / NIH</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- HEART -->
+      <div class="chakra-item" style="--dot:var(--c-heart)">
+        <button class="chakra-head" aria-expanded="false" aria-controls="p-heart">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="head-text">
+            <span class="chakra-name">Heart</span>
+            <span class="chakra-sub">Anahata · centre of chest</span>
+          </span>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="panel" id="p-heart" role="region" aria-label="Heart chakra details">
+          <div class="panel-inner"><div class="panel-pad">
+            <div class="detail"><span class="detail-label">Nerve anchor &amp; what it controls</span><p><span class="nerve-name">Cardiac plexus.</span> Sets heart rate and contraction force through vagal (slowing) and sympathetic (speeding) input.</p></div>
+            <div class="detail"><span class="detail-label">What the asanas influence</span><p>Compassion and emotional openness. <span class="hook">Real hook:</span> backbends plus breath raise heart-rate variability and vagal tone, linked to steadier emotion.</p></div>
+            <div class="detail"><span class="detail-label">Asanas</span><p><span class="asana">Ustrasana <span class="eng">(Camel)</span></span><br><span class="asana">Matsyasana <span class="eng">(Fish)</span></span></p></div>
+            <div class="detail links"><span class="detail-label">Sources</span>
+              <a href="https://www.sciencedirect.com/topics/neuroscience/cardiac-plexus" target="_blank" rel="noopener">Cardiac plexus — ScienceDirect</a>
+              <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4959333/" target="_blank" rel="noopener">Yoga &amp; heart-rate variability — PMC</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- THROAT -->
+      <div class="chakra-item" style="--dot:var(--c-throat)">
+        <button class="chakra-head" aria-expanded="false" aria-controls="p-throat">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="head-text">
+            <span class="chakra-name">Throat</span>
+            <span class="chakra-sub">Vishuddha · throat</span>
+          </span>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="panel" id="p-throat" role="region" aria-label="Throat chakra details">
+          <div class="panel-inner"><div class="panel-pad">
+            <div class="detail"><span class="detail-label">Nerve anchor &amp; what it controls</span><p><span class="nerve-name">Pharyngeal plexus</span> (with cervical nerves). Controls the muscles of the throat and soft palate — swallowing and voice.</p></div>
+            <div class="detail"><span class="detail-label">What the asanas influence</span><p>Communication and self-expression. <span class="caveat">Caveat:</span> inversions compress the throat mechanically, but a real endocrine effect is not established.</p></div>
+            <div class="detail"><span class="detail-label">Asanas</span><p><span class="asana">Sarvangasana <span class="eng">(Shoulderstand)</span></span><br><span class="asana">Halasana <span class="eng">(Plough)</span></span></p></div>
+            <div class="detail links"><span class="detail-label">Sources</span>
+              <a href="https://www.discovermagazine.com/the-science-behind-your-chakras-43074" target="_blank" rel="noopener">The science behind chakras — Discover</a>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8191226/" target="_blank" rel="noopener">Yoga &amp; the vagal brainstem — PMC</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- THIRD EYE -->
+      <div class="chakra-item" style="--dot:var(--c-thirdeye)">
+        <button class="chakra-head" aria-expanded="false" aria-controls="p-thirdeye">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="head-text">
+            <span class="chakra-name">Third Eye</span>
+            <span class="chakra-sub">Ajna · between the brows</span>
+          </span>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="panel" id="p-thirdeye" role="region" aria-label="Third eye chakra details">
+          <div class="panel-inner"><div class="panel-pad">
+            <div class="detail"><span class="detail-label">Nerve anchor &amp; what it controls</span><p><span class="nerve-name">Brainstem &amp; hypothalamus.</span> The brain's autonomic command centre, governing arousal, the sleep–wake rhythm, and temperature.</p></div>
+            <div class="detail"><span class="detail-label">What the asanas influence</span><p>Focus, concentration, intuition. <span class="hook">Real hook:</span> meditative attention modulates brainstem vagal relays that regulate heart rate and breath.</p></div>
+            <div class="detail"><span class="detail-label">Asanas</span><p><span class="asana">Balasana <span class="eng">(Child's Pose)</span></span><br><span class="asana">Padmasana <span class="eng">(seated focus)</span></span></p></div>
+            <div class="detail links"><span class="detail-label">Sources</span>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8191226/" target="_blank" rel="noopener">Mechanistic model of yoga — PMC</a>
+              <a href="https://www.discovermagazine.com/the-science-behind-your-chakras-43074" target="_blank" rel="noopener">The science behind chakras — Discover</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- CROWN -->
+      <div class="chakra-item" style="--dot:var(--c-crown)">
+        <button class="chakra-head" aria-expanded="false" aria-controls="p-crown">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="head-text">
+            <span class="chakra-name">Crown</span>
+            <span class="chakra-sub">Sahasrara · top of head</span>
+          </span>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="panel" id="p-crown" role="region" aria-label="Crown chakra details">
+          <div class="panel-inner"><div class="panel-pad">
+            <div class="detail"><span class="detail-label">Nerve anchor &amp; what it controls</span><p><span class="nerve-name">Cerebral cortex / CNS.</span> The seat of conscious thought, perception, and voluntary action — not a peripheral plexus.</p></div>
+            <div class="detail"><span class="detail-label">What the asanas influence</span><p>Awareness and meditative absorption. <span class="hook">Real hook:</span> long-term practice correlates with parasympathetic dominance and greater resilience.</p></div>
+            <div class="detail"><span class="detail-label">Asanas</span><p><span class="asana">Sirsasana <span class="eng">(Headstand)</span></span><br><span class="asana">Padmasana <span class="eng">(Lotus)</span></span></p></div>
+            <div class="detail links"><span class="detail-label">Sources</span>
+              <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5835127/" target="_blank" rel="noopener">Yoga therapy &amp; polyvagal theory — PMC</a>
+              <a href="https://www.discovermagazine.com/the-science-behind-your-chakras-43074" target="_blank" rel="noopener">The science behind chakras — Discover</a>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="foot-block">
+        <h3>Why the glands were removed</h3>
+        <p>The chakra-to-gland mapping is the weakest link in this map — the assigned gland changes between sources (root is "adrenals" in one, "gonads" in another; third-eye and crown swap pituitary and pineal). The nerve plexuses are far better anchored in real anatomy, so this version keeps those and drops the rest.</p>
+      </div>
+      <div class="foot-block">
+        <h3>How much to trust the evidence</h3>
+        <p>The yoga research is real but often from small, lower-quality studies. Trust the <em>direction</em> — practice tends to move the body toward a calmer autonomic state — more than any exact magnitude. Nothing here verifies that a chakra <em>causes</em> these effects; only that the anatomy and the effects themselves are real.</p>
+      </div>
+    </div>
+    <div class="sig">
+      <span class="mini-dots" aria-hidden="true">
+        <span style="background:var(--c-root)"></span>
+        <span style="background:var(--c-sacral)"></span>
+        <span style="background:var(--c-solar)"></span>
+        <span style="background:var(--c-heart)"></span>
+        <span style="background:var(--c-throat)"></span>
+        <span style="background:var(--c-thirdeye)"></span>
+        <span style="background:var(--c-crown)"></span>
+      </span>
+      <span>Built as a personal reference · edit this line with your own name or note.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.chakra-head').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var item = btn.closest('.chakra-item');
+      var open = item.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
